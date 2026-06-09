@@ -43,6 +43,7 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click="login"
+        :loading="loading"
       >
         登录
       </el-button>
@@ -53,6 +54,8 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
+import { useStore } from 'vuex'
+const store = useStore()
 const loginFromRef = ref(null)
 const passType = ref('password')
 const loginForm = ref({
@@ -65,12 +68,36 @@ const loginRules = ref({
   password: [{ required: true, validator: validatePassword(), trigger: 'blur' }]
 })
 
+const loading = ref(false)
+
 const passTypeChange = () => {
   if (passType.value === 'password') {
     passType.value = 'text'
   } else {
     passType.value = 'password'
   }
+}
+
+const login = async () => {
+  if (!loginFromRef.value) return
+  loading.value = true
+  await loginFromRef.value.validate((valid, fields) => {
+    if (valid) {
+      console.log('submit!')
+      store
+        .dispatch('user/login', loginForm.value)
+        .then((data) => {
+          loading.value = false
+        })
+        .catch((err) => {
+          console.log('error submit!', err)
+          loading.value = false
+        })
+    } else {
+      console.log('error submit!', fields)
+      loading.value = false
+    }
+  })
 }
 </script>
 
