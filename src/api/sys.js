@@ -8,4 +8,10 @@ const login = (data) => {
   })
 }
 
-export { login }
+const getUserInfo = (data) => {
+  return request({
+    url: '/sys/profile'
+  })
+}
+
+export { login, getUserInfo }

@@ -19,9 +19,13 @@ const router = createRouter({
   routes: publicRoutes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   console.log(store.getters.token)
   if (store.getters.token) {
+    // 当存在token的时候判断是存在用户信息
+    if (!store.getters.hasUserInfo) {
+      await store.dispatch('user/getUserInfo')
+    }
     if (to.path === '/login') {
       next('/')
     } else {
