@@ -7,11 +7,12 @@ const service = axios.create({
 })
 
 // 请求拦截器
-service.interceptors.request.use(
-  (config) => {
-    config.headers.icode = 'helloqianduanxunlianying'
-    return config // 必须返回配置
-  },
+service.interceptors.request.use((config) => {
+  config.headers.icode = 'helloqianduanxunlianying'
+  return config // 必须返回配置
+})
+
+service.interceptors.response.use(
   (response) => {
     const { success, message } = response.data
     if (success) {

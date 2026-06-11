@@ -34,7 +34,7 @@
         />
         <span class="show-pwd" @click="passTypeChange">
           <el-icon>
-            <avatar />
+            <svg-icon :icon="passType === 'password' ? 'eye' : 'eye-open'" />
           </el-icon>
         </span>
       </el-form-item>
@@ -55,6 +55,7 @@
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
+import router from '@/router'
 const store = useStore()
 const loginFromRef = ref(null)
 const passType = ref('password')
@@ -87,6 +88,7 @@ const login = async () => {
       store
         .dispatch('user/login', loginForm.value)
         .then((data) => {
+          router.push('/')
           loading.value = false
         })
         .catch((err) => {

@@ -6,7 +6,7 @@
     :class="className"
   />
   <svg v-else class="svg-icon" :class="className" aria-hidden="true">
-    <use :xlink:herf="iconName" />
+    <use :xlink:href="iconName" />
   </svg>
 </template>
 
