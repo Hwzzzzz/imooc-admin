@@ -1,6 +1,7 @@
 <template>
   <div class="navbar">
     <hamburger class="hamburger-container" />
+    <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -32,6 +33,7 @@
 
 <script setup>
 import hamburger from '../components/hamburger.vue'
+import breadcrumb from '../components/Breadcrumb/index.vue'
 import {} from 'vue'
 import store from '@/store'
 const loginOut = () => {
@@ -56,6 +58,10 @@ const loginOut = () => {
     &:hover {
       background: rgba(0, 0, 0, 0.1);
     }
+  }
+
+  .breadcrumb-container {
+    float: left;
   }
   .right-menu {
     display: flex;
