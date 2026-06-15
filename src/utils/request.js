@@ -16,6 +16,7 @@ service.interceptors.request.use(
       config.headers.Authorization = `Bearer ${store.getters.token}`
       if (isCheckTimeOut()) {
         store.dispatch('user/loginOut')
+        return Promise.reject(new Error('token 失效'))
       }
     }
     return config // 必须返回配置

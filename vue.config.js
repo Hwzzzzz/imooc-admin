@@ -28,6 +28,15 @@ module.exports = defineConfig({
       })
       .end()
   },
+  // 与 chainWebpack 平级
+  configureWebpack: {
+    resolve: {
+      fallback: {
+        path: require.resolve('path-browserify')
+        // 其他需要的核心模块
+      }
+    }
+  },
   devServer: {
     // 配置反向代理
     proxy: {
