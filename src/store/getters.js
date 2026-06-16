@@ -5,5 +5,6 @@ export default {
   hasUserInfo: (state) => Object.keys(state.user.userInfo).length > 0,
   userInfo: (state) => state.user.userInfo,
   cssVar: (state) => variables,
-  sidebarOpened: (state) => state.app.sidebarOpened
+  sidebarOpened: (state) => state.app.sidebarOpened,
+  getters: (state) => state.app.language
 }

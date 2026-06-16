@@ -2,6 +2,7 @@
   <div class="navbar">
     <hamburger class="hamburger-container" />
     <div class="right-menu">
+      <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -32,6 +33,7 @@
 
 <script setup>
 import hamburger from '../components/hamburger.vue'
+import LangSelect from '@/components/LangSelect/index'
 import {} from 'vue'
 import store from '@/store'
 const loginOut = () => {
@@ -72,6 +74,18 @@ const loginOut = () => {
           --el-avatar-background-color: none;
           margin-right: 12px;
         }
+      }
+    }
+
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
       }
     }
   }
