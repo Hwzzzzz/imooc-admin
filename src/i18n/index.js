@@ -1,19 +1,26 @@
 import { createI18n } from 'vue-i18n'
+import mZhLocale from '../lang/zh'
+import mEnLocale from '../lang/en'
+import store from '@/store'
 
 const messages = {
   en: {
     msg: {
-      test: 'hello world'
+      ...mEnLocale
     }
   },
   zh: {
     msg: {
-      test: '你好世界'
+      ...mZhLocale
     }
   }
 }
 
-const locale = 'en'
+const getLanguage = () => {
+  return store?.getters?.language || 'zn'
+}
+
+const locale = getLanguage()
 
 const i18n = createI18n({
   legacy: false,
